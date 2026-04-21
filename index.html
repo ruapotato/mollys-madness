@@ -1,56 +1,156 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content=width=device-width,initial-scale=1>
-<title>Molly&#39;s Madness</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Molly's Madness</title>
 <style>
-body,html{margin:0;padding:0;font-family:Georgia,serif;background:#fdf6ec;color:#2b2118;line-height:1.6}
-header{text-align:center;padding:2.5rem 1rem 1rem}
-header h1{margin:0;font-size:2.6rem;color:#c94f7c;letter-spacing:.02em}
-header p.tagline{margin:.3rem 0 0;color:#7a6a5a;font-style:italic}
-nav.tabs{display:flex;justify-content:center;gap:.5rem;padding:1rem;flex-wrap:wrap}
-nav.tabs a{font-family:inherit;font-size:1rem;background:transparent;color:#2b2118;border:2px solid #c94f7c;border-radius:999px;padding:.5rem 1.4rem;text-decoration:none}
-nav.tabs a:hover{background:#f5d6e2}
-main{max-width:720px;margin:0 auto;padding:1rem 1.5rem 3rem}
-section.tab-panel{display:none}
-section.tab-panel:target{display:block}
-section#home{display:block}
-body:has(:target) section#home:not(:target){display:none}
-section.tab-panel h2{color:#c94f7c;border-bottom:1px solid #f5d6e2;padding-bottom:.3rem}
-.gallery-placeholder{background:#f5d6e2;border-radius:12px;padding:2rem;text-align:center;color:#7a6a5a}
-footer{text-align:center;padding:2rem 1rem;color:#7a6a5a;font-size:.9rem}
+  :root {
+    --bg: #fdf6f0;
+    --ink: #3a2a2a;
+    --accent: #c25b7c;
+    --accent-soft: #f3d6e1;
+    --muted: #7a6a6a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 1rem;
+  }
+  header h1 {
+    font-size: 2.6rem;
+    margin: 0;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+  header p.tagline {
+    margin: 0.4rem 0 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  nav.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--accent-soft);
+    margin: 1.5rem auto 0;
+    max-width: 720px;
+    padding: 0 1rem;
+  }
+  nav.tabs label {
+    cursor: pointer;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav.tabs label:hover { color: var(--accent); }
+  input[type=\"radio\"].tab-toggle { display: none; }
+  .panel {
+    display: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+  }
+  #t-home:checked ~ main #panel-home,
+  #t-about:checked ~ main #panel-about,
+  #t-gallery:checked ~ main #panel-gallery {
+    display: block;
+  }
+  #t-home:checked ~ nav label[for=\"t-home\"],
+  #t-about:checked ~ nav label[for=\"t-about\"],
+  #t-gallery:checked ~ nav label[for=\"t-gallery\"] {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .panel h2 {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 0.4rem;
+  }
+  .gallery-placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--muted);
+  }
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
 </style>
 </head>
 <body>
+
+<input type="radio" name="tab" id="t-home" class="tab-toggle" checked>
+<input type="radio" name="tab" id="t-about" class="tab-toggle">
+<input type="radio" name="tab" id="t-gallery" class="tab-toggle">
+
 <header>
-<h1>Molly&#39;s Madness</h1>
-<p class=tagline>Handmade crochet, made with love</p>
+  <h1>Molly's Madness</h1>
+  <p class="tagline">Handmade crochet creatures, big and small.</p>
 </header>
-<nav class=tabs>
-<a href=#home>Home</a>
-<a href=#about>About Me</a>
-<a href=#gallery>Gallery</a>
+
+<nav class="tabs">
+  <label for="t-home">Home</label>
+  <label for="t-about">About Me</label>
+  <label for="t-gallery">Gallery</label>
 </nav>
+
 <main>
-<section id=home class=tab-panel>
-<h2>Welcome</h2>
-<p>Welcome to Molly&#39;s Madness. I make cozy, oversized crochet pieces by hand: jumbo blankets, big stuffed animals, and other larger-than-life creations.</p>
-<p>Use the tabs above to learn a little about me or browse the gallery.</p>
-</section>
-<section id=about class=tab-panel>
-<h2>About Me</h2>
-<p>My name is Molly Hamner. I have been crocheting for the last six years, and right now I am really into making jumbo things: big blankets, oversized stuffed animals, and anything else that makes people smile because of its scale.</p>
-<p>Every piece is made by hand, one stitch at a time.</p>
-</section>
-<section id=gallery class=tab-panel>
-<h2>Gallery</h2>
-<div class=gallery-placeholder>
-<p>Photos coming soon.</p>
-<p>Check back shortly to see my latest jumbo blankets and oversized stuffed animals.</p>
-</div>
-</section>
+  <section class="panel" id="panel-home">
+    <h2>Welcome</h2>
+    <p>
+      Welcome to Molly's Madness, home of one-of-a-kind crochet creatures.
+      I love making oversized stuffed animals and bringing mythical and
+      fantasy creatures to life in yarn.
+    </p>
+    <p>
+      Take a look around: the <strong>About Me</strong> tab has a bit
+      about who I am, and the <strong>Gallery</strong> will show off
+      my work as photos go up.
+    </p>
+  </section>
+
+  <section class="panel" id="panel-about">
+    <h2>About Me</h2>
+    <p>
+      Hi, I'm <strong>Molly Hamner</strong>. I have been crocheting for the
+      last six years.
+    </p>
+    <p>
+      Right now I am really into making big creatures, especially mythical
+      and fantasy creatures and aliens. Oversized stuffed animals are my
+      favorite thing to make.
+    </p>
+  </section>
+
+  <section class="panel" id="panel-gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-placeholder">
+      <p>Photos coming soon.</p>
+      <p style="font-size: 0.9rem;">
+        Check back here once Molly sends in pictures of her creatures.
+      </p>
+    </div>
+  </section>
 </main>
-<footer>&copy; Molly&#39;s Madness</footer>
+
+<footer>
+  &copy; Molly's Madness
+</footer>
+
 </body>
 </html>
